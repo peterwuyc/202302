@@ -24,7 +24,9 @@ The result of the merge is [1].
 
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-
+        for(int i=0; i<n; i++)
+            nums1[i+m] = nums2[i];
+        Arrays.sort(nums1);
     }
 }
 
@@ -45,6 +47,11 @@ Output: [0]
 
 class Solution {
     public void moveZeroes(int[] nums) {
-
+        if(nums==null || nums.length==0) return ;
+        int i=0;
+        for (int num: nums)
+            if(num!=0) nums[i++] = num;
+        while(i < nums.length)
+            nums[i++] = 0
     }
 }
