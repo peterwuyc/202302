@@ -1,0 +1,53 @@
+1.
+Create HashMap to save data
+Input action+ integer+name as string from keyboard
+
+Example
+Add,12,peter. // create Peter as id 12
+Update, 12,peter1 // update Peter to Peter1
+Get. //print map
+Delete,12// remove Peter from map
+
+
+    public static void main(String[] args) {
+
+        HashMap<Integer, String> map = new HashMap<>();
+        System.out.println("type a number as key, a string as value. e.g<12, Peter>");
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+
+            int key = scanner.nextInt();
+            String val = scanner.next();
+
+            map.put(key, val);
+
+            System.out.println("\nwant to add more key-value pair in this map, enter 1." + "\nExit, enter 0.");
+            Scanner scan = new Scanner(System.in);
+            int repeat = scan.nextInt();
+            if (!(repeat == 1)) {
+                break;
+            }
+        }
+
+        System.out.println("print the map: ");
+        System.out.println(map);
+
+
+        System.out.println("entry the key you want to get");
+        int key1 = scanner.nextInt();
+
+        String name = map.get(key1);
+        System.out.println("get key: {" + key1 + "} value is: " + name);
+
+        System.out.println("entry the key you want to remove");
+        int key2 = scanner.nextInt();
+        String remove = map.remove(key2);
+
+
+        System.out.println(remove + " is removed");
+
+        System.out.println("print the map: ");
+        System.out.println(map);
+
+
+    }
