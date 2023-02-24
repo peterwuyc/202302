@@ -24,7 +24,26 @@ The result of the merge is [1].
 
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
+        //merge sort 一般都用双指针，这道题从后面往前推 easy apply to nums1;
+        int i = m - 1; int j = n - 1;
+        int p = nums1.length - 1;
+        while(i >= 0 && j >= 0){
+            if(nums1[i] > nums2[j]){
+                nums1[p] = nums1[i];
+                i--;
+            }else{
+                nums1[p] = nums2[j];
+                j--;
+            }
+            p--;
+        }
 
+        // because return nums1, so we just consider nums2 not move to the start node
+        while(j >= 0){
+                nums1[p] = nums2[j];
+                j--;
+                p--;
+        }   
     }
 }
 
@@ -45,6 +64,20 @@ Output: [0]
 
 class Solution {
     public void moveZeroes(int[] nums) {
-
+        // slow-fast  two pointers to for loop whole arrays and swap the elments
+        int slow = 0;
+        int fast = 0;
+        while(fast < nums.length){
+            if(nums[fast] != 0){
+                swap(nums,slow,fast);
+                slow++;   
+            }
+            fast++;
+        }
+    }
+    public void swap(int[] nums, int a, int b){
+        int tem = nums[a];
+        nums[a] = nums[b];
+        nums[b] = tem;
     }
 }
