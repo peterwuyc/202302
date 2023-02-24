@@ -7,3 +7,31 @@ Add,12,peter. // create Peter as id 12
 Update, 12,peter1 // update Peter to Peter1
 Get. //print map
 Delete,12// remove Peter from map
+
+public static void main(String[] args){
+    Map<Integer, String> map = new HashMap<>();
+    Scanner scanner = new Scanner(System.in);
+    while(true){
+        int key = scanner.nextInt();
+        String val = scanner.next();
+        map.put(key, val);
+        
+        // add action--1/add
+        Scanner scanner = new Scanner(System.in);
+        int repeat = scanner.nextInt();
+        if(repeat != 1) break;
+    }
+
+    //get-print map;
+    System.out.println(map);
+
+    //get what you want;
+    int key1 = scanner.nextInt();
+    String name = map.get(key1);
+    System.out.println(name);
+
+    //remove 
+    int key2 = scanner.nextInt();
+    String remove = map.remove(key2);
+    System.out.println(remove);
+}
