@@ -9,45 +9,116 @@ Get. //print map
 Delete,12// remove Peter from map
 
 
-    public static void main(String[] args) {
+public class Student implements Comparable<Student> {
 
-        HashMap<Integer, String> map = new HashMap<>();
-        System.out.println("type a number as key, a string as value. e.g<12, Peter>");
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+    private String name;
+    private int age;
+    private String email;
 
-            int key = scanner.nextInt();
-            String val = scanner.next();
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
-            map.put(key, val);
-
-            System.out.println("\nwant to add more key-value pair in this map, enter 1." + "\nExit, enter 0.");
-            Scanner scan = new Scanner(System.in);
-            int repeat = scan.nextInt();
-            if (!(repeat == 1)) {
-                break;
-            }
-        }
-
-        System.out.println("print the map: ");
-        System.out.println(map);
-
-
-        System.out.println("entry the key you want to get");
-        int key1 = scanner.nextInt();
-
-        String name = map.get(key1);
-        System.out.println("get key: {" + key1 + "} value is: " + name);
-
-        System.out.println("entry the key you want to remove");
-        int key2 = scanner.nextInt();
-        String remove = map.remove(key2);
-
-
-        System.out.println(remove + " is removed");
-
-        System.out.println("print the map: ");
-        System.out.println(map);
-
+    public Student(String name) {
+        this.name = name;
 
     }
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    @Override
+    public int compareTo(Student o) {
+        return this.name.compareTo(o.name);
+    }
+}
+
+
+public class StreamJava8 {
+    public static Map<Integer, Student> map = new HashMap<>();
+
+    static {
+        map.put(1, new Student("peter", 20));
+        map.put(2, new Student("jacky", 50));
+        map.put(3, new Student("alan", 33));
+        map.put(4, new Student("zello", 63));
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String s = scanner.next();
+            System.out.println(s);
+
+            String[] str = s.split(",");
+
+            if (str[0].equals("add")) {
+                Integer id = Integer.parseInt(str[1]);
+                String name = str[2];
+                Student s1 = new Student(name);
+                map.put(id, s1);
+
+            } else if (str[0].equals("list")) {
+                for (Map.Entry<Integer, Student> entry : map.entrySet()) {
+                    System.out.println("id : " + entry.getKey() + " " + entry.getValue());
+                }
+
+            } else if (str[0].equals("get")) {
+                Integer id = Integer.parseInt(str[1]);
+                System.out.println(map.get(id));
+
+            } else if (str[0].equals("remove")) {
+                Integer id = Integer.parseInt(str[1]);
+                map.remove(id);
+
+            } else if (str[0].equals("sort")) {
+                List<Student> list = new ArrayList<>();
+                for (Map.Entry<Integer, Student> entry : map.entrySet()) {
+                    list.add(entry.getValue());
+                }
+                Collections.sort(list);
+                System.out.println(list);
+
+            } else if (str[0].equals("sortByAge")) {
+                List<Student> list = new ArrayList<>();
+                for (Map.Entry<Integer, Student> entry : map.entrySet()) {
+                    list.add(entry.getValue());
+                }
+                list = list.stream().sorted((a, b) -> a.getAge() - b.getAge()).collect(Collectors.toList());
+                System.out.println(list);
+
+            } else if (str[0].equals("filter")) {
+                List<Student> list = new ArrayList<>();
+                for (Map.Entry<Integer, Student> entry : map.entrySet()) {
+                    Student student = entry.getValue();
+                    if (student.getAge() > 20) {
+                        System.out.println(student);
+                    }
+
+                }
+
+            }
+
+        }
+    }
+}
