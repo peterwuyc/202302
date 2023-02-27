@@ -25,6 +25,21 @@ The result of the merge is [1].
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
 
+int i=m-1 , j=n-1 ;
+        while(i>=0 && j>=0 ){
+            if(nums1[i]>=nums2[j]){
+                nums1[i+j+1]=nums1[i] ;
+                i-- ;
+                }else{
+                    nums1[i+j+1]=nums2[j];
+                    j-- ;
+                }
+        }
+        while(j>=0){
+                    nums1[j]=nums2[j];
+                    j-- ;
+                }
+
     }
 }
 
@@ -45,6 +60,17 @@ Output: [0]
 
 class Solution {
     public void moveZeroes(int[] nums) {
+    
+     if (nums == null || nums.length == 0) return;        
+
+    int insertPos = 0;
+    for (int num: nums) {
+        if (num != 0) nums[insertPos++] = num;
+    }        
+
+    while (insertPos < nums.length) {
+        nums[insertPos++] = 0;
+    }
 
     }
 }
