@@ -7,13 +7,3 @@ Add,12,peter. // create Peter as id 12
 Update, 12,peter1 // update Peter to Peter1
 Get. //print map
 Delete,12// remove Peter from map
-public class solution{
-
-    public void map(){
-        Map<Integer , String> map = new HashMap<>();
-        map.put(12,"peter");
-        map.put(12,"peter1")
-        map.get(12);
-        map.remove(12);
-    }
-}
