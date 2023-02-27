@@ -24,27 +24,20 @@ The result of the merge is [1].
 
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if (n == 0) {
+            return;
+        }
 
-      int p1 = m-1;
-            int p2 = n-1;
-            int p =0;
-            while(p1 >= 0 && p2 >=0){
-                if(nums1[p1]>nums2[p2]){
-                    nums1[p] = nums1[p1];
-                    p1--;
-                }else{
-                    nums1[p]=nums2[p2];
-                    p2--;
-                }
-                p--;
+        int i = m - 1;
+        int j = n - 1;
 
+        for (int k = m + n - 1; k >= 0; k--) {
+            if (j < 0 || i >= 0 && nums1[i] > nums2[j]) {
+                nums1[k] = nums1[i--];
+            } else {
+                nums1[k] = nums2[j--];
             }
-
-            while(p2>=0){
-                nums[p]=nums2[p2];
-                p2--;
-                p--;
-            }
+        }
 
     }
 }
@@ -66,26 +59,22 @@ Output: [0]
 
 class Solution {
     public void moveZeroes(int[] nums) {
-
-     int p = removeElement(nums,0);
-
-            for(;p < nums.length ;p++){
-                nums[p] =0;
-            }
-            }
-
-            int removeElement(int[] nums,int val){
-            int slow = 0;
-            int fast = 0;
-            while(fast <= nums.length -1){
-                    if(nums[fast] != val){
-                        nums[slow] = nums[fast];
-                        slow++;
-                    }
-                    fast++;
-            }
-            return slow;
+        if  (nums == null || nums.length == 0) {
+            return;
         }
+        int i = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] == 0) {
+                continue;
+            }
+            swap(nums, i, j);
+            i++;
+        }
+    }
 
+    private void swap (int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
