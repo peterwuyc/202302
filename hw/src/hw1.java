@@ -1,4 +1,5 @@
-class Solution {
+
+public class hw1 {
     /*
     88. Merge Sorted Array
 
