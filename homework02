@@ -1,4 +1,7 @@
-1.
+
+import java.util.*;
+
+/*1.
 Create HashMap to save data
 Input action+ integer+name as string from keyboard
 
@@ -6,4 +9,47 @@ Example
 Add,12,peter. // create Peter as id 12
 Update, 12,peter1 // update Peter to Peter1
 Get. //print map
-Delete,12// remove Peter from map
+Delete,12// remove Peter from map*/
+
+public class Main {
+    public static Map<Integer, String> map = new HashMap<>();
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while(scanner.hasNext()){
+            String s = scanner.next();
+            //System.out.println(s);
+            String[] res = s.split(",");
+            if(res[0].equals("Add")){
+                Integer id = Integer.parseInt(res[1]);
+                String name = res[2];
+                map.put(id,name);
+            }else if(res[0].equals("Get")){
+                for(Map.Entry<Integer,String> entry :map.entrySet()){
+                    System.out.println("id:" + entry.getKey()+"  student:" +entry.getValue());
+                }
+            }else if(res[0].equals("Update")){
+                Integer id = Integer.parseInt(res[1]);
+                String name = res[2];
+                map.put(id,name);
+            }else if(res[0].equals("Delete")){
+                  Integer id = Integer.parseInt(res[1]);
+                map.remove(id);
+            }
+
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
