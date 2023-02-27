@@ -9,7 +9,10 @@ Example
 Add,12,peter. // create Peter as id 12
 Update, 12,peter1 // update Peter to Peter1
 Get. //print map
-Delete,12// remove Peter from map*/
+Delete,12// remove Peter from map
+
+*/
+
 
 public class Main {
     public static Map<Integer, String> map = new HashMap<>();
@@ -34,22 +37,10 @@ public class Main {
                 String name = res[2];
                 map.put(id,name);
             }else if(res[0].equals("Delete")){
-                  Integer id = Integer.parseInt(res[1]);
+                Integer id = Integer.parseInt(res[1]);
                 map.remove(id);
             }
 
         }
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
