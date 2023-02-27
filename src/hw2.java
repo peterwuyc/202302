@@ -1,14 +1,3 @@
-1.
-Create HashMap to save data
-Input action+ integer+name as string from keyboard
-
-Example
-Add,12,peter. // create Peter as id 12
-Update, 12,peter1 // update Peter to Peter1
-Get. //print map
-Delete,12// remove Peter from map
-
-
 import java.util.HashMap;
 import java.util.Scanner;
 
