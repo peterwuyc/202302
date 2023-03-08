@@ -51,6 +51,27 @@ class Solution {
             }
         }
 
+      int p1 = m-1;
+            int p2 = n-1;
+            int p =0;
+            while(p1 >= 0 && p2 >=0){
+                if(nums1[p1]>nums2[p2]){
+                    nums1[p] = nums1[p1];
+                    p1--;
+                }else{
+                    nums1[p]=nums2[p2];
+                    p2--;
+                }
+                p--;
+
+            }
+
+            while(p2>=0){
+                nums[p]=nums2[p2];
+                p2--;
+                p--;
+            }
+
     }
 }
 
@@ -90,6 +111,26 @@ class Solution {
 
         while (k < n) {
             nums[k++] = 0;
+        }
+
+     int p = removeElement(nums,0);
+
+            for(;p < nums.length ;p++){
+                nums[p] =0;
+            }
+            }
+
+            int removeElement(int[] nums,int val){
+            int slow = 0;
+            int fast = 0;
+            while(fast <= nums.length -1){
+                    if(nums[fast] != val){
+                        nums[slow] = nums[fast];
+                        slow++;
+                    }
+                    fast++;
+            }
+            return slow;
         }
 
     }
