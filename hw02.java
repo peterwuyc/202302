@@ -63,8 +63,6 @@ public class hw02 {
             // todo: do I need to use try catch to give out an exception such as "input mismatch exception"?
             System.out.println("Please make sure that the available processes are Add, Update, Get and Delete");
         }
-
-
     }
 
     private void deletePerson(String[] arrOfStr) {

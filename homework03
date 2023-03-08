@@ -16,9 +16,31 @@ Output: [5,4,3,2,1]. 5->4->3->2->1
  * }
  */
 class Solution {
-  public ListNode reverseList(ListNode head) {
-  
+  // recursive way
+  public ListNode reverseList1(ListNode head) {
+     if (head == null || head.next == null) {  // will use head.next.next, need to check head.next not null
+                // if next is null, that's the new head
+                return head;
+            }
+
+    ListNode newHead = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;  // release
+    return newHead;
   }
+
+  // iterative way
+  public ListNode reverseList2(ListNode head) {
+      ListNode prev = null, cur = head;
+      while (cur != null) {
+          ListNode nextNode = cur.next;
+          cur.next = prev;
+          prev = cur;
+          cur = nextNode;
+      }
+      return prev;
+  }
+
 }
 
 
@@ -30,6 +52,16 @@ Output: [1,2]
 
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        
+         ListNode cur = head;
+
+        while (cur != null && cur.next != null) {
+            if (cur.next.val == cur.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+
+        return head;
     }
 }
