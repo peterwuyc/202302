@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3d07e2d-29b6-4232-b266-4df0cf40da5f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hw02.java" beforeDir="false" afterPath="$PROJECT_DIR$/hw02.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +58,8 @@
       <option name="presentableId" value="Default" />
       <updated>1678248980836</updated>
       <workItem from="1678248982209" duration="347000" />
-      <workItem from="1678249362573" duration="1341000" />
+      <workItem from="1678249362573" duration="1820000" />
+      <workItem from="1679239231581" duration="1218000" />
     </task>
     <servers />
   </component>
