@@ -1,6 +1,9 @@
 package com.example.reservationservice.service;
 
+import com.example.reservationservice.entity.Flight;
 import com.example.reservationservice.entity.User;
+
+import java.util.List;
 
 public interface TicketService {
     /**
@@ -9,9 +12,11 @@ public interface TicketService {
      */
     int findNumber(String flightId);
 
-    void bookTicket(User user);
+    boolean bookTicket(User user);
 
     void removeUser(String username);
 
     void updateSeatNumber(String username, String flightId, Integer newNumber);
+
+    List<Flight> checkAllFlights(String flightName,int page,int limit);
 }

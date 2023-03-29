@@ -1,13 +1,18 @@
 package com.example.reservationservice.service.Impl;
 
 
+import com.example.reservationservice.entity.Flight;
 import com.example.reservationservice.entity.User;
 import com.example.reservationservice.repository.FlightRepository;
 import com.example.reservationservice.repository.UserRepository;
 import com.example.reservationservice.service.TicketService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 @Service
 public class TicketServiceImpl implements TicketService {
     @Resource
@@ -21,9 +26,17 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public void bookTicket(User user) {
-        flightRepository.updateNumberOfSeats(user.getFlightId());
-        userRepository.save(user);
+    public boolean bookTicket(User user) {
+        String flightId = user.getFlightId();
+        Flight flight = flightRepository.getFlightByFlightId(flightId);
+        if(flight.getNumber_of_seats()<1){
+          return false;
+        }else{
+            flightRepository.updateNumberOfSeats(flightId);
+            userRepository.save(user);
+            return true;
+        }
+
     }
 
     @Override
@@ -31,8 +44,6 @@ public class TicketServiceImpl implements TicketService {
         User user = userRepository.getUserByUsername(username);
         flightRepository.addNumberOfSeats(user.getFlightId());
         userRepository.deleteUserByUsername(username);
-
-
     }
 
     @Override
@@ -40,5 +51,11 @@ public class TicketServiceImpl implements TicketService {
         User user = userRepository.getUserByUsernameAndFlightId(username,flightId);
         user.setSeat_id(newNumber);
         userRepository.save(user);
+    }
+
+    @Override
+    public List<Flight> checkAllFlights(String flightName,int page,int limit) {
+        Pageable pageable = PageRequest.of(page,limit);
+        return flightRepository.checkAllFlights(flightName,pageable);
     }
 }

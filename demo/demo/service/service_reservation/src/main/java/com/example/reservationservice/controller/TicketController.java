@@ -1,10 +1,13 @@
 package com.example.reservationservice.controller;
 
 import com.example.commonutils.R;
+import com.example.reservationservice.entity.Flight;
 import com.example.reservationservice.entity.User;
 import com.example.reservationservice.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/reservation/reservation-ticket")
@@ -23,8 +26,12 @@ public class TicketController {
 //    2. User can book seat with seat number
     @PostMapping("bookTicket")
     public R bookTicket(User user){
-        ticketService.bookTicket(user);
-        return R.ok();
+        boolean flag = ticketService.bookTicket(user);
+        if(flag){
+            return R.ok();
+        }else{
+            return R.error();
+        }
     }
 
 //    3. User can update seat number
@@ -39,5 +46,16 @@ public class TicketController {
     public R deleteUser(@PathVariable String username){
         ticketService.removeUser(username);
         return R.ok();
+    }
+
+    /**
+     * check the available flights by flightname
+     */
+    @GetMapping("checkFlightsByName/{flightName}/{page}/{limit}")
+    public R checkFlightsByName(@PathVariable String flightName,
+                                @PathVariable int page,
+                                @PathVariable int limit){
+        List<Flight> list =  ticketService.checkAllFlights(flightName,page,limit);
+        return R.ok().data("list",list);
     }
 }

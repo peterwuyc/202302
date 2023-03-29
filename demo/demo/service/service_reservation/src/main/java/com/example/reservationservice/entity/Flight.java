@@ -18,6 +18,7 @@ public class Flight{
     private Integer number_of_seats;
     @Column
     private String flightId;
-
+    @Column
+    private String flightName;
 
 }
