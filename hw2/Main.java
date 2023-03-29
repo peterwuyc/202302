@@ -14,10 +14,10 @@ public class Main {
     public static void main(String[] args) {
         Map<Integer, Student> map = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
-        while(scanner.hasNext()){
+        while (scanner.hasNext()) {
 //            add, zhangsan, 10, 123@gmail.com
 //            get zhangsan, return info of this student
-            if(scanner.nextLine().equals("add") ){
+            if (scanner.nextLine().equals("add")) {
                 System.out.println("Enter the name");
                 String name = scanner.nextLine();
 
@@ -27,24 +27,24 @@ public class Main {
                 System.out.println("Enter the email");
                 String email = scanner.nextLine();
 
-                Student student = new Student(name,id,email);
-                map.put(id,student);
+                Student student = new Student(name, id, email);
+                map.put(id, student);
                 System.out.println("Student info was created successfully");
             }
-            if(scanner.nextLine().equals("get")){
+            if (scanner.nextLine().equals("get")) {
                 System.out.println("Enter the id of the student you want to query");
                 int id = scanner.nextInt();
                 scanner.nextLine();
                 Student stu = map.get(id);
-                if(stu != null){
-                    System.out.println(stu.name +","+ stu.id+","+ stu.email);
-                }else{
+                if (stu != null) {
+                    System.out.println(stu.name + "," + stu.id + "," + stu.email);
+                } else {
                     System.out.println("The student info does not exist");
                 }
 
             }
 
-            if(("update").equals(scanner.nextLine())){
+            if (("update").equals(scanner.nextLine())) {
                 System.out.println("Enter the id of the people you want to update");
                 int id = scanner.nextInt();
                 scanner.nextLine();
@@ -53,12 +53,12 @@ public class Main {
                 String name = scanner.nextLine();
                 System.out.println("Enter the the new email");
                 String email = scanner.nextLine();
-                student = new Student(name,id,email);
-                map.put(id,student);
+                student = new Student(name, id, email);
+                map.put(id, student);
                 System.out.println("done");
             }
 
-            if(("delete").equals((scanner.nextLine()))){
+            if (("delete").equals((scanner.nextLine()))) {
                 System.out.println("Enter the id of the people you want to delete");
                 int id = scanner.nextInt();
                 scanner.nextLine();

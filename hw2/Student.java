@@ -3,7 +3,7 @@ public class Student {
     public Integer id;
     public String email;
 
-    public Student(){
+    public Student() {
 
     }
 
