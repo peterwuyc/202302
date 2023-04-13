@@ -1,9 +1,7 @@
 package com.theapeng.Flight.Reservation.System.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +10,8 @@ import java.util.Set;
 @Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Flight {
     @Id
     private Integer id;
@@ -21,8 +21,8 @@ public class Flight {
     private boolean[] seats = new boolean[10];
     //private Set<Seat> seats = new HashSet<>();
 
-    @ManyToMany
-    Set<Order> orders = new HashSet<>();
+//    @ManyToMany
+//    Set<Order> orders = new HashSet<>();
 
     @Override
     public String toString() {

@@ -1,9 +1,7 @@
 package com.theapeng.Flight.Reservation.System.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +10,8 @@ import java.util.Set;
 @Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
     @Id
     private Integer id;
@@ -20,7 +20,8 @@ public class Customer {
     private String phoneNumber;
 
     // reservation? order?
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    Set<Order> OrderSet = new HashSet<>();
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Set<Order> orderSet = new HashSet<>();
 
 }

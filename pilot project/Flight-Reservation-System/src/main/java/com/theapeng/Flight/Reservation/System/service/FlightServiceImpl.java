@@ -20,7 +20,11 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public Optional<Flight> findById(Integer flightId){
-        return flightRepository.findById(flightId);
+        try{
+            return flightRepository.findById(flightId);
+        } catch (Exception e) {
+            throw new RuntimeException(String.format("Flight findByID %d failed", flightId));
+        }
     }
 
     @Override
@@ -60,6 +64,30 @@ public class FlightServiceImpl implements FlightService {
 
         } catch (final Exception e){
             throw e;
+        }
+    }
+
+    @Override
+    public void reserveSeatForFlight(Integer flightId, Integer seatId){
+        try{
+            Flight flight = flightRepository.findById(flightId).get();
+            assert(!flight.getSeats()[seatId]);
+            flight.getSeats()[seatId] = true;
+            flightRepository.save(flight);
+        }catch (Exception e){
+            throw new RuntimeException("Seat Not Available");
+        }
+    }
+
+    @Override
+    public void cancelSeatForFlight(Integer flightId, Integer seatId) {
+        try{
+            Flight flight = flightRepository.findById(flightId).get();
+            assert(flight.getSeats()[seatId]);
+            flight.getSeats()[seatId] = false;
+            flightRepository.save(flight);
+        }catch (Exception e) {
+            throw new RuntimeException("Cannot cancel order for seat that is not reserved.");
         }
     }
 }
